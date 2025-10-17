@@ -2,18 +2,10 @@
 
 import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import GRAPH_TYPES from "../../../constants/graphTypes";
 
 export default function Home() {
   const router = useRouter();
-
-  const graphTypes = [
-    {"id": 0, "name": "Artistas em comum", "sharedGraph": true},
-    {"id": 1, "name": "Distância entre artistas", "sharedGraph": true},
-    {"id": 2, "name": "Recomendações", "sharedGraph": false},
-    {"id": 3, "name": "Clusterização", "sharedGraph": false},
-    {"id": 4, "name": "Árvore de descoberta musical", "sharedGraph": false},
-    {"id": 5, "name": "Conexões sociais", "sharedGraph": true}
-  ];
 
   const createGraph = (graphTypeId: number) => {
     router.push(`/create_graph/${graphTypeId}`);
@@ -37,7 +29,7 @@ export default function Home() {
         gap={2}
         justifyContent="center"
       >
-        {graphTypes.map((graphType) => (
+        {GRAPH_TYPES.map((graphType) => (
           <Card
             key={graphType.id}
             onClick={() => createGraph(graphType.id)}

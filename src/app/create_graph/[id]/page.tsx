@@ -2,10 +2,13 @@
 
 import { Box, Typography } from "@mui/material";
 import { useParams } from "next/navigation";
+import GRAPH_TYPES from "../../../../constants/graphTypes";
 
 export default function Home() {
   const params = useParams();
-  const graphType = params.graphType;
+  const graphId = params.id;
+
+  const graph = GRAPH_TYPES.find((g) => g.id === Number(graphId));
 
   /*
     Aqui, deve ser feita uma requisição ao backend para coletar os dados do usuário na API do Spotify,
@@ -17,7 +20,7 @@ export default function Home() {
   return (
     <Box>
       <Typography variant="h4">
-        {graphType}
+        {!graph ? "Não encontrado" : graph.name}
       </Typography>
     </Box>
   );
