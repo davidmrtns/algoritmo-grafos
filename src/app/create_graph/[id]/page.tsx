@@ -1,10 +1,16 @@
 "use client"
 
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, FilledInput, IconButton, InputAdornment, Typography } from "@mui/material";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useParams } from "next/navigation";
 import GRAPH_TYPES from "../../../../constants/graphTypes";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+  const [sharedLink, setSharedLink] = useState("");
+  const [graphData, setGraphData] = useState({});
+  
   const params = useParams();
   const graphId = params.id;
 
@@ -17,11 +23,65 @@ export default function Home() {
     e confirmar o uso, irá buscar os próprios dados dele no Spotify e fazer o cruzamento de dados.
   */
 
+  const invokeCreateGraph = async () => {
+    setLoading(true);
+    
+    if (!graph) {
+      setLoading(false);
+      return;
+    };
+
+    try {
+      const response = await fetch(graph.apiUrl);
+      
+      if (!response.ok) {
+        throw new Error("Erro ao criar o grafo");
+      }
+
+      const data = await response.json();
+
+      if (data.sharedLink) setSharedLink(data.sharedLink);
+      if (data.graphData) setGraphData(data.graphData);
+    } catch (error) {
+      console.error("Erro ao chamar a API:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    invokeCreateGraph();
+  }, []);
+
   return (
-    <Box>
+    <Box
+      display="flex"
+      justifyContent="center"
+      justifyItems="center"
+      flexDirection="column"
+    >
       <Typography variant="h4">
         {!graph ? "Não encontrado" : graph.name}
       </Typography>
+      {loading && <CircularProgress />}
+      {sharedLink &&
+        <Box>
+          <Typography variant="button" color="textSecondary">
+            Aqui está o seu link para gerar o grafo! Envie para um amigo para completar a geração.
+          </Typography>
+          <FilledInput
+            value={sharedLink}
+            readOnly
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton>
+                  <ContentCopyIcon />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </Box>
+      }
     </Box>
   );
 }
