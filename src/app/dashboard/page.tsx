@@ -44,7 +44,15 @@ export default function Home() {
             }}
           >
             <CardContent>
-              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14, textAlign: "center" }}>
+              <Typography
+                gutterBottom
+                sx={{
+                  color: 'text.secondary',
+                  fontSize: 14,
+                  textAlign: "center",
+                  fontStyle: "italic"
+                }}
+              >
                 {graphType.sharedGraph ? "Compartilhado" : "Individual"}
               </Typography>
               <Typography textAlign="center">

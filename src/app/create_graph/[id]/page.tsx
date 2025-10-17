@@ -63,13 +63,14 @@ export default function Home() {
       <Typography variant="h4">
         {!graph ? "Não encontrado" : graph.name}
       </Typography>
-      {loading && <CircularProgress />}
+      {loading && <CircularProgress color="secondary" />}
       {sharedLink &&
         <Box>
           <Typography variant="button" color="textSecondary">
             Aqui está o seu link para gerar o grafo! Envie para um amigo para completar a geração.
           </Typography>
           <FilledInput
+            color="secondary"
             value={sharedLink}
             readOnly
             endAdornment={

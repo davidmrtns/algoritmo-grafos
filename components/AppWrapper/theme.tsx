@@ -1,17 +1,33 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface Palette {
+    tertiary?: Palette['primary'];
+  }
+  interface PaletteOptions {
+    tertiary?: PaletteOptions['primary'];
+  }
+}
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2'
+      main: '#34d399' // Navbar and buttons color
     },
     secondary: {
-      main: '#9c27b0'
+      main: '#F27121' // Accent color (links, spinners, highlights)
+    },
+    tertiary: {
+      main: '#A78BFA'
     },
     background: {
-      default: '#f5f5f5',
-      paper: '#ffffff'
+      default: '#0f2027',
+      paper: '#2c5364'
     },
+    text: {
+      primary: '#ffffff',
+      secondary: '#d1d5db'
+    }
   },
   typography: {
     fontFamily: 'Inter, Roboto, Arial, sans-serif'
