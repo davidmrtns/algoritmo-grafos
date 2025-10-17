@@ -1,4 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 
 export default function Home() {
     return (
@@ -10,8 +12,11 @@ export default function Home() {
           height: "100vh",
         }}
       >
-        <Button variant="contained" color="primary" href="/dashboard">
-          Logar com Spotify
+        <Button variant="contained" sx={{ backgroundColor: "#18D860" }} href="/dashboard">
+          <FontAwesomeIcon icon={faSpotify} style={{ width: "18px" }} />
+          <Typography variant="button" sx={{ ml: 1 }}>
+            Logar com Spotify
+          </Typography>
         </Button>
       </Box>
     );
