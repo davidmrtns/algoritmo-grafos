@@ -1,14 +1,23 @@
+"use client"
+
 import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const graphTypes = [
-    {"id": 0, "name": "Artistas em comum"},
-    {"id": 1, "name": "Distância entre artistas"},
-    {"id": 2, "name": "Recomendações"},
-    {"id": 3, "name": "Clusterização"},
-    {"id": 4, "name": "Árvore de descoberta musical"},
-    {"id": 5, "name": "Conexões sociais"}
+    {"id": 0, "name": "Artistas em comum", "sharedGraph": true},
+    {"id": 1, "name": "Distância entre artistas", "sharedGraph": true},
+    {"id": 2, "name": "Recomendações", "sharedGraph": false},
+    {"id": 3, "name": "Clusterização", "sharedGraph": false},
+    {"id": 4, "name": "Árvore de descoberta musical", "sharedGraph": false},
+    {"id": 5, "name": "Conexões sociais", "sharedGraph": true}
   ];
+
+  const createGraph = (graphTypeId: number) => {
+    router.push(`/create_graph/${graphTypeId}`);
+  };
 
   return (
     <Box
@@ -31,6 +40,7 @@ export default function Home() {
         {graphTypes.map((graphType) => (
           <Card
             key={graphType.id}
+            onClick={() => createGraph(graphType.id)}
             sx={{
               cursor: "pointer",
               transition: "transform 0.3s, box-shadow 0.3s",
@@ -42,6 +52,9 @@ export default function Home() {
             }}
           >
             <CardContent>
+              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14, textAlign: "center" }}>
+                {graphType.sharedGraph ? "Compartilhado" : "Individual"}
+              </Typography>
               <Typography textAlign="center">
                 {graphType.name}
               </Typography>
