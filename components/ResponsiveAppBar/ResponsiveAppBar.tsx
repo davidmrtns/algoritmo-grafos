@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { getDecodedToken } from '../../utils/token_utils';
 
 const APP_NAME = "app name"
 const pages: string[] = []; // Currently not used
@@ -21,8 +22,10 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+  const decodedToken = getDecodedToken();
+
   // TODO: use this property to show or hide the app bar
-  const loggedInUser = true;
+  const loggedInUser = !!decodedToken;
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
