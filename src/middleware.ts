@@ -1,0 +1,24 @@
+import { NextRequest, NextResponse } from "next/server";
+
+const PROTECTED_ROUTES = ["/dashboard"];
+const LOGIN_ROUTE = "/login";
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const token = request.cookies.get("token")?.value;
+
+  // If the user is logged in and tries to access the login page, redirect to dashboard
+  if (pathname.startsWith(LOGIN_ROUTE) && token) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  // If the user tries to access an unprotected route, allow
+  if (!PROTECTED_ROUTES.some((route) => pathname.startsWith(route))) {
+    return NextResponse.next();
+  }
+
+  // If the user is not logged in and tries to access a protected route, redirect to login
+  if (!token) {
+    return NextResponse.redirect(new URL(LOGIN_ROUTE, request.url));
+  }
+}
