@@ -25,7 +25,7 @@ export default function Home() {
       }}
     >
       <Button variant="contained" sx={{ backgroundColor: "#18D860" }} onClick={generateToken}>
-        <FontAwesomeIcon icon={faSpotify} style={{ width: "18px" }} />
+        <FontAwesomeIcon icon={faSpotify} size="lg" />
         <Typography variant="button" sx={{ ml: 1 }}>
           Logar com Spotify
         </Typography>
