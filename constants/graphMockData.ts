@@ -1,3 +1,4 @@
+import { LinkType } from "../types/GraphData";
 import { BEYONCE_NODE, BILLIE_EILISH_NODE, DJ_KHALED_NODE, DOJA_CAT_NODE, DRAKE_NODE, DUA_LIPA_NODE, ED_SHEERAN_NODE, JUSTIN_BIEBER_NODE, KENDRICK_LAMAR_NODE, OLIVIA_RODRIGO_NODE, POST_MALONE_NODE, SABRINA_CARPENTER_NODE, SZA_NODE, TAYLOR_SWIFT_NODE, THE_WEEKND_NODE, TRAVIS_SCOTT_NODE } from "./artistsMockData";
 import { DAVID_NODE, LUCAS_NODE } from "./usersMockData";
 
@@ -111,21 +112,21 @@ export const RECOMMENDED_ARTISTS_MOCK = {
 
   links: [
     // David → known artists
-    { source: DAVID_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: "curte" },
-    { source: DAVID_NODE.id, target: OLIVIA_RODRIGO_NODE.id, label: "curte" },
-    { source: DAVID_NODE.id, target: BILLIE_EILISH_NODE.id, label: "curte" },
+    { source: DAVID_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: LinkType.Likes },
+    { source: DAVID_NODE.id, target: OLIVIA_RODRIGO_NODE.id, label: LinkType.Likes },
+    { source: DAVID_NODE.id, target: BILLIE_EILISH_NODE.id, label: LinkType.Likes },
 
     // natural connections (colabs / affinities)
-    { source: TAYLOR_SWIFT_NODE.id, target: ED_SHEERAN_NODE.id, label: "colab" }, // collab
-    { source: OLIVIA_RODRIGO_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: "influência direta" }, // direct influence
-    { source: OLIVIA_RODRIGO_NODE.id, target: BILLIE_EILISH_NODE.id, label: "pop alt" }, // same pop alt generation
-    { source: ED_SHEERAN_NODE.id, target: THE_WEEKND_NODE.id, label: "feat indireto" }, // indirect feat (pop crossover)
-    { source: ED_SHEERAN_NODE.id, target: DUA_LIPA_NODE.id, label: "pop britânico" }, // british pop
+    { source: TAYLOR_SWIFT_NODE.id, target: ED_SHEERAN_NODE.id, label: "End Game" },
+    { source: OLIVIA_RODRIGO_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: LinkType.Influence },
+    { source: OLIVIA_RODRIGO_NODE.id, target: BILLIE_EILISH_NODE.id, label: LinkType.SimilarGenres },
+    { source: ED_SHEERAN_NODE.id, target: THE_WEEKND_NODE.id, label: LinkType.Colab }, // indirect feat (pop crossover)
+    { source: ED_SHEERAN_NODE.id, target: DUA_LIPA_NODE.id, label: LinkType.SimilarGenres }, // british pop
     { source: THE_WEEKND_NODE.id, target: SZA_NODE.id, label: "Die For You (Remix)" }, // “Die For You (Remix)”
     { source: THE_WEEKND_NODE.id, target: POST_MALONE_NODE.id, label: "One Right Now" }, // “One Right Now”
     { source: DOJA_CAT_NODE.id, target: THE_WEEKND_NODE.id, label: "In Your Eyes (Remix)" }, // “In Your Eyes (Remix)”
     { source: DOJA_CAT_NODE.id, target: SZA_NODE.id, label: "Kiss Me More" }, // “Kiss Me More”
     { source: DUA_LIPA_NODE.id, target: DOJA_CAT_NODE.id, label: "Levitating (Remix)" }, // “Levitating (Remix)”
-    { source: POST_MALONE_NODE.id, target: BILLIE_EILISH_NODE.id, label: "pop alt mix" } // similar pop/alt mix
+    { source: POST_MALONE_NODE.id, target: BILLIE_EILISH_NODE.id, label: LinkType.SimilarGenres } // similar pop/alt mix
   ],
 };
