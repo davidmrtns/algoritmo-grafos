@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export function getDecodedToken() {
   if (typeof window === "undefined") {
     // Return null if in server

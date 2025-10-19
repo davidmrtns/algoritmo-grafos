@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/navigation';
-import { getDecodedToken, removeTokenFromCookies } from '../../utils/token_utils';
+import { removeTokenFromCookies } from '../../utils/token_utils';
 
 const APP_NAME = "app name"
 const pages: string[] = []; // Currently not used
@@ -25,10 +25,6 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const router = useRouter();
-  const decodedToken = getDecodedToken();
-
-  // TODO: use this property to show or hide the app bar
-  const loggedInUser = !!decodedToken;
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -53,8 +49,6 @@ function ResponsiveAppBar() {
     removeTokenFromCookies();
     router.push("/");
   };
-
-  if (!loggedInUser) return ""; 
 
   return (
     <AppBar position="static" color="primary">

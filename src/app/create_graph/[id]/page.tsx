@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
 import { GraphData } from "../../../../types/GraphData";
 import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../../constants/graphMockData";
+import { ProtectedPageWrapper } from "../../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -79,38 +80,40 @@ export default function Home() {
   }, []);
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      justifyItems="center"
-      alignItems="center"
-      flexDirection="column"
-    >
-      <Typography variant="h4" textAlign="center" gutterBottom>
-        {!graph ? "Não encontrado" : graph.name}
-      </Typography>
-      {loading || !graphData ? <CircularProgress color="secondary" /> : (
-        <GraphRenderer graphData={graphData} />
-      )}
-      {sharedLink &&
-        <Box>
-          <Typography variant="button" color="textSecondary">
-            Aqui está o seu link para gerar o grafo! Envie para um amigo para completar a geração.
-          </Typography>
-          <FilledInput
-            color="secondary"
-            value={sharedLink}
-            readOnly
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton>
-                  <ContentCopyIcon />
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </Box>
-      }
-    </Box>
+    <ProtectedPageWrapper>
+      <Box
+        display="flex"
+        justifyContent="center"
+        justifyItems="center"
+        alignItems="center"
+        flexDirection="column"
+      >
+        <Typography variant="h4" textAlign="center" gutterBottom>
+          {!graph ? "Não encontrado" : graph.name}
+        </Typography>
+        {loading || !graphData ? <CircularProgress color="secondary" /> : (
+          <GraphRenderer graphData={graphData} />
+        )}
+        {sharedLink &&
+          <Box>
+            <Typography variant="button" color="textSecondary">
+              Aqui está o seu link para gerar o grafo! Envie para um amigo para completar a geração.
+            </Typography>
+            <FilledInput
+              color="secondary"
+              value={sharedLink}
+              readOnly
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton>
+                    <ContentCopyIcon />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </Box>
+        }
+      </Box>
+    </ProtectedPageWrapper>
   );
 }
