@@ -5,12 +5,15 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useParams } from "next/navigation";
 import GRAPH_TYPES from "../../../../constants/graphTypes";
 import { useEffect, useState } from "react";
+import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
+import { GraphData } from "../../../../types/GraphData";
+import { MY_ARTISTS_MOCK } from "../../../../constants/graphMockData";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [sharedLink, setSharedLink] = useState("");
-  const [graphData, setGraphData] = useState({});
-  
+  const [graphData, setGraphData] = useState<GraphData | null>(MY_ARTISTS_MOCK);
+
   const params = useParams();
   const graphId = params.id;
 
@@ -63,7 +66,9 @@ export default function Home() {
       <Typography variant="h4">
         {!graph ? "Não encontrado" : graph.name}
       </Typography>
-      {loading && <CircularProgress color="secondary" />}
+      {loading || !graphData ? <CircularProgress color="secondary" /> : (
+        <GraphRenderer graphData={graphData} />
+      )}
       {sharedLink &&
         <Box>
           <Typography variant="button" color="textSecondary">

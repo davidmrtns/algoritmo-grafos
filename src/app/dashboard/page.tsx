@@ -18,7 +18,6 @@ export default function Home() {
       alignItems="center"
       flexDirection="column"
       height="100vh"
-      width="90%"
     >
       <Typography variant="h4" component="h1">
         Página inicial
