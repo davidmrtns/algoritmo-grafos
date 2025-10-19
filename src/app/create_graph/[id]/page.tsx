@@ -7,17 +7,36 @@ import GRAPH_TYPES from "../../../../constants/graphTypes";
 import { useEffect, useState } from "react";
 import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
 import { GraphData } from "../../../../types/GraphData";
-import { MY_ARTISTS_MOCK } from "../../../../constants/graphMockData";
+import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS, MY_ARTISTS_MOCK } from "../../../../constants/graphMockData";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [sharedLink, setSharedLink] = useState("");
-  const [graphData, setGraphData] = useState<GraphData | null>(MY_ARTISTS_MOCK);
+  const [graphData, setGraphData] = useState<GraphData | null>(null);
 
   const params = useParams();
   const graphId = params.id;
 
   const graph = GRAPH_TYPES.find((g) => g.id === Number(graphId));
+
+  // Defines mock data while not connected to the backend
+  useEffect(() => {
+    let mockData;
+
+    switch (graph?.id) {
+      case 0:
+        mockData = COMMON_ARTISTS_MOCK;
+        break;
+      case 1:
+        mockData = DISTANCE_BETWEEN_ARTISTS;
+        break;
+      default:
+        mockData = null;
+        break;
+    }
+
+    setGraphData(mockData);
+  }, [graph])
 
   /*
     Aqui, deve ser feita uma requisição ao backend para coletar os dados do usuário na API do Spotify,
@@ -61,9 +80,10 @@ export default function Home() {
       display="flex"
       justifyContent="center"
       justifyItems="center"
+      alignItems="center"
       flexDirection="column"
     >
-      <Typography variant="h4">
+      <Typography variant="h4" textAlign="center" gutterBottom>
         {!graph ? "Não encontrado" : graph.name}
       </Typography>
       {loading || !graphData ? <CircularProgress color="secondary" /> : (
