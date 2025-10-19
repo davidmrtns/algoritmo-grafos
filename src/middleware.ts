@@ -7,6 +7,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("token")?.value;
 
+  // TODO: should validate the token
+
   // If the user is logged in and tries to access the login page, redirect to dashboard
   if (pathname.startsWith(LOGIN_ROUTE) && token) {
     return NextResponse.redirect(new URL('/dashboard', request.url));

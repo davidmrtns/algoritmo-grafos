@@ -12,7 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { getDecodedToken } from '../../utils/token_utils';
+import PersonIcon from '@mui/icons-material/Person';
+import { useRouter } from 'next/navigation';
+import { getDecodedToken, removeTokenFromCookies } from '../../utils/token_utils';
 
 const APP_NAME = "app name"
 const pages: string[] = []; // Currently not used
@@ -22,6 +24,7 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+  const router = useRouter();
   const decodedToken = getDecodedToken();
 
   // TODO: use this property to show or hide the app bar
@@ -38,8 +41,17 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (setting?: string) => {
     setAnchorElUser(null);
+  
+    if (setting === "Logout") {
+      removeToken();
+    }
+  };
+
+  const removeToken = () => {
+    removeTokenFromCookies();
+    router.push("/");
   };
 
   if (!loggedInUser) return ""; 
@@ -134,7 +146,9 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="John Doe">
+                  <PersonIcon />
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -154,7 +168,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
