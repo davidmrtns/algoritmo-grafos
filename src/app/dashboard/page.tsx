@@ -17,7 +17,6 @@ export default function Home() {
       justifyContent="flex-start"
       alignItems="center"
       flexDirection="column"
-      height="100vh"
     >
       <Typography variant="h4" component="h1">
         Página inicial
