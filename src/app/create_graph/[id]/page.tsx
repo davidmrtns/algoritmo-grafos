@@ -7,7 +7,7 @@ import GRAPH_TYPES from "../../../../constants/graphTypes";
 import { useEffect, useState } from "react";
 import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
 import { GraphData } from "../../../../types/GraphData";
-import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS, MY_ARTISTS_MOCK } from "../../../../constants/graphMockData";
+import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../../constants/graphMockData";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,10 @@ export default function Home() {
         mockData = COMMON_ARTISTS_MOCK;
         break;
       case 1:
-        mockData = DISTANCE_BETWEEN_ARTISTS;
+        mockData = DISTANCE_BETWEEN_ARTISTS_MOCK;
+        break;
+      case 2:
+        mockData = RECOMMENDED_ARTISTS_MOCK;
         break;
       default:
         mockData = null;

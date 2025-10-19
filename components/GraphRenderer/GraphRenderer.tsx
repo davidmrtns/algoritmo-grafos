@@ -72,6 +72,44 @@ export default function GraphRenderer({ graphData }: { graphData: GraphData }) {
 
         return group;
       }}
+      linkThreeObjectExtend={true}
+      linkThreeObject={(link) => {
+        if (!link.label) {
+          return new THREE.Object3D();
+        }
+
+        // Create a canvas for the link label
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d")!;
+        const fontSize = 32;
+        context.font = `${fontSize}px Arial`;
+        const text = link.label || ""; // Use a "label" property from the link data
+        const textWidth = context.measureText(text).width;
+        canvas.width = textWidth;
+        canvas.height = fontSize * 1.4;
+
+        context.font = `${fontSize}px Arial`;
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillStyle = "white";
+        context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+        const sprite = new THREE.Sprite(spriteMaterial);
+
+        sprite.scale.set(10, 5, 1); // Adjust size as needed
+        return sprite;
+      }}
+      linkPositionUpdate={(sprite, { start, end }) => {
+        // Position the label in the middle of the link
+        if (sprite) {
+          const middleX = (start.x + end.x) / 2;
+          const middleY = (start.y + end.y) / 2;
+          const middleZ = (start.z + end.z) / 2;
+          sprite.position.set(middleX, middleY, middleZ);
+        }
+      }}
     />
   );
 }

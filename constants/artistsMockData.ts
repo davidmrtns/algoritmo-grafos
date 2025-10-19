@@ -73,3 +73,7 @@ export const SZA_NODE = {
   image: "https://i.scdn.co/image/ab67616100005174fd0a9fb6c252a3ba44079acf",
 };
 
+export const DOJA_CAT_NODE = {
+  id: "Doja Cat",
+  image: "https://i.scdn.co/image/ab676161000051748a0644455ebfa7d3976f5101",
+};
