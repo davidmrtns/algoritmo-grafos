@@ -1,8 +1,8 @@
-import { LinkType } from "../types/GraphData";
+import { GraphData, LinkType } from "../../types/types";
 import { BEYONCE_NODE, BILLIE_EILISH_NODE, COLDPLAY_NODE, CONAN_GRAY_NODE, DJ_KHALED_NODE, DOJA_CAT_NODE, DRAKE_NODE, DUA_LIPA_NODE, ED_SHEERAN_NODE, GRACIE_ABRAMS_NODE, IMAGINE_DRAGONS_NODE, JUSTIN_BIEBER_NODE, KENDRICK_LAMAR_NODE, LAUV_NODE, OLIVIA_RODRIGO_NODE, PARAMORE_NODE, POST_MALONE_NODE, SABRINA_CARPENTER_NODE, SZA_NODE, TAYLOR_SWIFT_NODE, THE_WEEKND_NODE, TRAVIS_SCOTT_NODE } from "./artistsMockData";
 import { DAVID_NODE, LUCAS_NODE } from "./usersMockData";
 
-export const MY_ARTISTS_MOCK = {
+export const MY_ARTISTS_MOCK: GraphData = {
   nodes: [
     DAVID_NODE,
     TAYLOR_SWIFT_NODE,
@@ -14,7 +14,7 @@ export const MY_ARTISTS_MOCK = {
   ],
 }
 
-export const COMMON_ARTISTS_MOCK = {
+export const COMMON_ARTISTS_MOCK: GraphData = {
   nodes: [
     // Users
     DAVID_NODE,
@@ -44,7 +44,7 @@ export const COMMON_ARTISTS_MOCK = {
   ],
 };
 
-export const DISTANCE_BETWEEN_ARTISTS_MOCK = {
+export const DISTANCE_BETWEEN_ARTISTS_MOCK: GraphData = {
   nodes: [
     TAYLOR_SWIFT_NODE,
     ED_SHEERAN_NODE,
@@ -96,7 +96,7 @@ export const DISTANCE_BETWEEN_ARTISTS_MOCK = {
   ]
 };
 
-export const RECOMMENDED_ARTISTS_MOCK = {
+export const RECOMMENDED_ARTISTS_MOCK: GraphData = {
   nodes: [
     DAVID_NODE,
     TAYLOR_SWIFT_NODE,
@@ -131,7 +131,7 @@ export const RECOMMENDED_ARTISTS_MOCK = {
   ],
 };
 
-export const MY_CLUSTERS_MOCK = {
+export const MY_CLUSTERS_MOCK: GraphData = {
   nodes: [
     DAVID_NODE,
     TAYLOR_SWIFT_NODE,
@@ -170,7 +170,7 @@ export const MY_CLUSTERS_MOCK = {
   ]
 };
 
-export const MY_DISCOVERY_TREE_MOCK = {
+export const MY_DISCOVERY_TREE_MOCK: GraphData = {
   nodes: [
     DAVID_NODE,
     TAYLOR_SWIFT_NODE,

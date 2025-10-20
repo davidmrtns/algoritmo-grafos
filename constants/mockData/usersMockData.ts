@@ -1,4 +1,4 @@
-import { GraphNode } from "../types/GraphData"
+import { GraphNode } from "../../types/types"
 
 export const DAVID_NODE: GraphNode = {
   id: "David",
