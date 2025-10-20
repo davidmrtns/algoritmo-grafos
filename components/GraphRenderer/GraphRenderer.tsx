@@ -13,7 +13,7 @@ export default function GraphRenderer({ graphData }: { graphData: GraphData }) {
       nodeAutoColorBy="group"
       nodeLabel="id"
       backgroundColor="rgba(0,0,0,0)"
-      linkColor={() => "rgba(255,255,255,1)"}
+      linkColor="rgba(255,255,255,1)"
       nodeThreeObject={({ id, image }) => {
         const imgTexture = new THREE.TextureLoader().load(image);
         imgTexture.colorSpace = THREE.SRGBColorSpace;
