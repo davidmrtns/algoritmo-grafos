@@ -5,6 +5,7 @@ export type GraphData = {
 
 export type GraphNode = {
   id: string;
+  name: string;
   imageUrl: string;
   isUser: boolean;
 }

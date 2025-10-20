@@ -44,11 +44,11 @@ export default function GraphRenderer({ graphData }: { graphData: GraphData }) {
           width={openSideMenu ? window.innerWidth - GRAPH_SIDE_MENU_WIDTH : window.innerWidth}
           graphData={graphData}
           nodeAutoColorBy="group"
-          nodeLabel="id"
+          nodeLabel="name"
           backgroundColor="rgba(0,0,0,0)"
           linkColor="rgba(255,255,255,1)"
           onNodeClick={(node) => setSelectedNodeAndOpenMenu(node as GraphNode)}
-          nodeThreeObject={({ id, imageUrl }) => {
+          nodeThreeObject={({ name, imageUrl }) => {
             const imgTexture = new THREE.TextureLoader().load(imageUrl);
             imgTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -79,7 +79,7 @@ export default function GraphRenderer({ graphData }: { graphData: GraphData }) {
             const labelCtx = labelCanvas.getContext("2d")!;
             const fontSize = 64;
             labelCtx.font = `bold ${fontSize}px Arial`;
-            const textWidth = labelCtx.measureText(String(id)).width;
+            const textWidth = labelCtx.measureText(String(name)).width;
             labelCanvas.width = textWidth;
             labelCanvas.height = fontSize * 1.4;
 
@@ -87,7 +87,7 @@ export default function GraphRenderer({ graphData }: { graphData: GraphData }) {
             labelCtx.textAlign = "center";
             labelCtx.textBaseline = "middle";
             labelCtx.fillStyle = "white";
-            labelCtx.fillText(String(id), labelCanvas.width / 2, labelCanvas.height / 2);
+            labelCtx.fillText(String(name), labelCanvas.width / 2, labelCanvas.height / 2);
 
             const labelTexture = new THREE.CanvasTexture(labelCanvas);
             const labelMaterial = new THREE.SpriteMaterial({
