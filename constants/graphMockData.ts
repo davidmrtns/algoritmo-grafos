@@ -1,5 +1,5 @@
 import { LinkType } from "../types/GraphData";
-import { BEYONCE_NODE, BILLIE_EILISH_NODE, DJ_KHALED_NODE, DOJA_CAT_NODE, DRAKE_NODE, DUA_LIPA_NODE, ED_SHEERAN_NODE, JUSTIN_BIEBER_NODE, KENDRICK_LAMAR_NODE, OLIVIA_RODRIGO_NODE, POST_MALONE_NODE, SABRINA_CARPENTER_NODE, SZA_NODE, TAYLOR_SWIFT_NODE, THE_WEEKND_NODE, TRAVIS_SCOTT_NODE } from "./artistsMockData";
+import { BEYONCE_NODE, BILLIE_EILISH_NODE, COLDPLAY_NODE, CONAN_GRAY_NODE, DJ_KHALED_NODE, DOJA_CAT_NODE, DRAKE_NODE, DUA_LIPA_NODE, ED_SHEERAN_NODE, GRACIE_ABRAMS_NODE, IMAGINE_DRAGONS_NODE, JUSTIN_BIEBER_NODE, KENDRICK_LAMAR_NODE, LAUV_NODE, OLIVIA_RODRIGO_NODE, PARAMORE_NODE, POST_MALONE_NODE, SABRINA_CARPENTER_NODE, SZA_NODE, TAYLOR_SWIFT_NODE, THE_WEEKND_NODE, TRAVIS_SCOTT_NODE } from "./artistsMockData";
 import { DAVID_NODE, LUCAS_NODE } from "./usersMockData";
 
 export const MY_ARTISTS_MOCK = {
@@ -130,3 +130,68 @@ export const RECOMMENDED_ARTISTS_MOCK = {
     { source: POST_MALONE_NODE.id, target: BILLIE_EILISH_NODE.id, label: LinkType.SimilarGenres } // similar pop/alt mix
   ],
 };
+
+export const MY_CLUSTERS_MOCK = {
+  nodes: [
+    DAVID_NODE,
+    TAYLOR_SWIFT_NODE,
+    SABRINA_CARPENTER_NODE,
+    OLIVIA_RODRIGO_NODE,
+    PARAMORE_NODE,
+    IMAGINE_DRAGONS_NODE,
+    COLDPLAY_NODE,
+    DRAKE_NODE,
+    TRAVIS_SCOTT_NODE,
+    KENDRICK_LAMAR_NODE
+  ],
+  links: [
+    // Pop Cluster
+    { source: TAYLOR_SWIFT_NODE.id, target: SABRINA_CARPENTER_NODE.id },
+    { source: TAYLOR_SWIFT_NODE.id, target: OLIVIA_RODRIGO_NODE.id },
+    { source: SABRINA_CARPENTER_NODE.id, target: OLIVIA_RODRIGO_NODE.id },
+
+    // Alternative Rock Cluster
+    { source: PARAMORE_NODE.id, target: IMAGINE_DRAGONS_NODE.id },
+    { source: IMAGINE_DRAGONS_NODE.id, target: COLDPLAY_NODE.id },
+    { source: PARAMORE_NODE.id, target: COLDPLAY_NODE.id },
+
+    // Hip Hop Cluster
+    { source: DRAKE_NODE.id, target: TRAVIS_SCOTT_NODE.id },
+    { source: TRAVIS_SCOTT_NODE.id, target: KENDRICK_LAMAR_NODE.id },
+    { source: DRAKE_NODE.id, target: KENDRICK_LAMAR_NODE.id },
+
+    // Links between clusters
+    { source: TAYLOR_SWIFT_NODE.id, target: KENDRICK_LAMAR_NODE.id, label: "Bad Blood (Remix)" }, // Bad Blood
+    { source: OLIVIA_RODRIGO_NODE.id, target: PARAMORE_NODE.id, label: LinkType.Influence }, // Direct influence
+    { source: COLDPLAY_NODE.id, target: DRAKE_NODE.id, label: LinkType.Colab }, // Colabs
+    { source: DAVID_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: LinkType.Likes }, // User preferences
+    { source: DAVID_NODE.id, target: PARAMORE_NODE.id, label: LinkType.Likes }, // User preferences
+    { source: DAVID_NODE.id, target: KENDRICK_LAMAR_NODE.id, label: LinkType.Likes } // User preferences
+  ]
+};
+
+export const MY_DISCOVERY_TREE_MOCK = {
+  nodes: [
+    DAVID_NODE,
+    TAYLOR_SWIFT_NODE,
+    OLIVIA_RODRIGO_NODE,
+    SABRINA_CARPENTER_NODE,
+    CONAN_GRAY_NODE,
+    GRACIE_ABRAMS_NODE,
+    LAUV_NODE
+  ],
+  links: [
+    // Root (exploration starting point)
+    { source: DAVID_NODE.id, target: TAYLOR_SWIFT_NODE.id, label: LinkType.Likes },
+
+    // Main branch (similarity chain)
+    { source: TAYLOR_SWIFT_NODE.id, target: OLIVIA_RODRIGO_NODE.id, label: LinkType.SimilarGenres },
+    { source: OLIVIA_RODRIGO_NODE.id, target: SABRINA_CARPENTER_NODE.id, label: LinkType.SimilarGenres },
+    { source: SABRINA_CARPENTER_NODE.id, target: CONAN_GRAY_NODE.id, label: LinkType.SimilarGenres },
+
+    // Side branches (similar "sibling" artists)
+    { source: OLIVIA_RODRIGO_NODE.id, target: GRACIE_ABRAMS_NODE.id, label: LinkType.Influence },
+    { source: CONAN_GRAY_NODE.id, target: LAUV_NODE.id, label: LinkType.Influence }
+  ],
+};
+

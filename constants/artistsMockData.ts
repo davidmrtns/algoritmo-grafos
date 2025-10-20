@@ -77,3 +77,33 @@ export const DOJA_CAT_NODE = {
   id: "Doja Cat",
   image: "https://i.scdn.co/image/ab676161000051748a0644455ebfa7d3976f5101",
 };
+
+export const PARAMORE_NODE = {
+  id: "Paramore",
+  image: "https://i.scdn.co/image/ab67616100005174b10c34546a4ca2d7faeb8865",
+};
+
+export const IMAGINE_DRAGONS_NODE = {
+  id: "Imagine Dragons",
+  image: "https://i.scdn.co/image/ab67616100005174ab47d8dae2b24f5afe7f9d38",
+};
+
+export const COLDPLAY_NODE = {
+  id: "Coldplay",
+  image: "https://i.scdn.co/image/ab676161000051741ba8fc5f5c73e7e9313cc6eb",
+};
+
+export const CONAN_GRAY_NODE = {
+  id: "Conan Gray",
+  image: "https://i.scdn.co/image/ab676161000051744c2b62d4748524454a6f99b0",
+};
+
+export const GRACIE_ABRAMS_NODE = {
+  id: "Gracie Abrams",
+  image: "https://i.scdn.co/image/ab67616100005174f6d51e6f5342d2d363220920",
+};
+
+export const LAUV_NODE = {
+  id: "Lauv",
+  image: "https://i.scdn.co/image/ab67616100005174b173d69f77530d77a991984f",
+};

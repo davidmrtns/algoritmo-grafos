@@ -7,7 +7,7 @@ import GRAPH_TYPES from "../../../../constants/graphTypes";
 import { useEffect, useState } from "react";
 import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
 import { GraphData } from "../../../../types/GraphData";
-import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../../constants/graphMockData";
+import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, MY_CLUSTERS_MOCK, MY_DISCOVERY_TREE_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../../constants/graphMockData";
 import { ProtectedPageWrapper } from "../../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 
 export default function Home() {
@@ -33,6 +33,12 @@ export default function Home() {
         break;
       case 2:
         mockData = RECOMMENDED_ARTISTS_MOCK;
+        break;
+      case 3:
+        mockData = MY_CLUSTERS_MOCK;
+        break;
+      case 4:
+        mockData = MY_DISCOVERY_TREE_MOCK;
         break;
       default:
         mockData = null;
