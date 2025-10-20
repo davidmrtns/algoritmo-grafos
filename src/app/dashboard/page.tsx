@@ -20,7 +20,7 @@ export default function Home() {
         alignItems="center"
         flexDirection="column"
       >
-        <Typography variant="h4" component="h1">
+        <Typography variant="h4" component="h1" marginBottom={1}>
           Página inicial
         </Typography>
         <Box
