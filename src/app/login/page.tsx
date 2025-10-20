@@ -3,7 +3,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
-import { addTokenToCookies } from "../../../utils/token_utils";
+import { addTokenToCookies } from "../../utils/token_utils";
 import { useRouter } from "next/navigation";
 
 export default function Home() {

@@ -3,12 +3,12 @@
 import { Box, CircularProgress, FilledInput, IconButton, InputAdornment, Typography } from "@mui/material";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useParams } from "next/navigation";
-import GRAPH_TYPES from "../../../../constants/graphTypes";
+import GRAPH_TYPES from "../../../constants/graphTypes";
 import { useEffect, useState } from "react";
-import GraphRenderer from "../../../../components/GraphRenderer/GraphRenderer";
-import { GraphData } from "../../../../types/types";
-import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, MY_CLUSTERS_MOCK, MY_DISCOVERY_TREE_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../../constants/mockData/graphMockData";
-import { ProtectedPageWrapper } from "../../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
+import GraphRenderer from "../../../components/GraphRenderer/GraphRenderer";
+import { GraphData } from "../../../types/types";
+import { COMMON_ARTISTS_MOCK, DISTANCE_BETWEEN_ARTISTS_MOCK, MY_ARTISTS_MOCK, MY_CLUSTERS_MOCK, MY_DISCOVERY_TREE_MOCK, RECOMMENDED_ARTISTS_MOCK } from "../../../constants/mockData/graphMockData";
+import { ProtectedPageWrapper } from "../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);

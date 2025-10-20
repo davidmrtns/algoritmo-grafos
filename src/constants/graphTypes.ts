@@ -1,4 +1,4 @@
-import { GraphType } from "../types/types";
+import { GraphType } from "../src/types/types";
 
 const GRAPH_TYPES: GraphType[] = [
   { id: 0, name: "Artistas em comum", sharedGraph: true, apiUrl: "" },

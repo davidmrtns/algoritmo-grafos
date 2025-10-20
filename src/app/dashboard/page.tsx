@@ -1,10 +1,9 @@
 "use client"
 
 import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import GRAPH_TYPES from "../../../constants/graphTypes";
-import { ProtectedPageWrapper } from "../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
-import GraphCard from "../../../components/GraphCard/GraphCard";
+import GRAPH_TYPES from "../../constants/graphTypes";
+import { ProtectedPageWrapper } from "../../components/ProtectedPageWrapper/ProtectedPageWrapper";
+import GraphCard from "../../components/GraphCard/GraphCard";
 
 export default function Home() {
   return (
