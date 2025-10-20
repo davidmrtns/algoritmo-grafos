@@ -4,14 +4,9 @@ import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import GRAPH_TYPES from "../../../constants/graphTypes";
 import { ProtectedPageWrapper } from "../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
+import GraphCard from "../../../components/GraphCard/GraphCard";
 
 export default function Home() {
-  const router = useRouter();
-
-  const createGraph = (graphTypeId: number) => {
-    router.push(`/create_graph/${graphTypeId}`);
-  };
-
   return (
     <ProtectedPageWrapper>
       <Box
@@ -30,36 +25,7 @@ export default function Home() {
           justifyContent="center"
         >
           {GRAPH_TYPES.map((graphType) => (
-            <Card
-              key={graphType.id}
-              onClick={() => createGraph(graphType.id)}
-              sx={{
-                cursor: "pointer",
-                transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)"
-                },
-                width: 250,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  sx={{
-                    color: 'text.secondary',
-                    fontSize: 14,
-                    textAlign: "center",
-                    fontStyle: "italic"
-                  }}
-                >
-                  {graphType.sharedGraph ? "Compartilhado" : "Individual"}
-                </Typography>
-                <Typography textAlign="center">
-                  {graphType.name}
-                </Typography>
-              </CardContent>
-            </Card>
+            <GraphCard key={graphType.id} graphType={graphType} />
           ))}
         </Box>
       </Box>

@@ -13,6 +13,13 @@ export type ArtistNode = GraphNode & {
   profileUrl: string;
 }
 
+export type GraphType = {
+  id: number;
+  name: string;
+  sharedGraph: boolean;
+  apiUrl: string;
+}
+
 export enum LinkType {
   Likes = "Curte",
   Colab = "Colaboraram",
