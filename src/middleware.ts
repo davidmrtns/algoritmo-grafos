@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const PROTECTED_ROUTES = ["/dashboard"];
 const LOGIN_ROUTE = "/login";
+const ROOT = "/";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,12 +11,12 @@ export async function middleware(request: NextRequest) {
   // TODO: should validate the token
 
   // If the user is logged in and tries to access the login page, redirect to dashboard
-  if (pathname.startsWith(LOGIN_ROUTE) && token) {
+  if ((pathname.startsWith(LOGIN_ROUTE) || pathname === ROOT) && token) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // If the user tries to access an unprotected route, allow
-  if (!PROTECTED_ROUTES.some((route) => pathname.startsWith(route))) {
+  if (!PROTECTED_ROUTES.some((route) => pathname.startsWith(route)) && pathname !== ROOT) {
     return NextResponse.next();
   }
 
