@@ -13,6 +13,11 @@ def add_user_to_db(user_id: str, name: str, db: Session) -> User:
     return user_obj
 
 
+def get_artist_from_db(artist_id: str, db: Session) -> Artist | None:
+    artist = db.query(Artist).filter_by(id=artist_id).first()
+    return artist
+
+
 def add_graph_to_db(user_id: str, user_name: str, artists: list[dict], db: Session) -> Graph | None:
     try:
         user = db.query(User).filter_by(id=user_id).first()
@@ -20,12 +25,14 @@ def add_graph_to_db(user_id: str, user_name: str, artists: list[dict], db: Sessi
             user = add_user_to_db(user_id, user_name, db)
 
         for artist in artists:
-            artist_obj = Artist(
-                id=artist.get("id"),
-                name=artist.get("name"),
-                image_url=artist.get("imageUrl"),
-                profile_url=artist.get("profileUrl")
-            )
+            artist_obj = get_artist_from_db(artist.get("id"), db)
+            if not artist_obj:
+                artist_obj = Artist(
+                    id=artist.get("id"),
+                    name=artist.get("name"),
+                    image_url=artist.get("imageUrl"),
+                    profile_url=artist.get("profileUrl")
+                )
 
             artist_user_assoc = UserArtistAssociation(
                 user_id=user.id,
