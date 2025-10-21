@@ -5,13 +5,13 @@ import { GraphType } from "../../types/types";
 export default function GraphCard({ graphType }: { graphType: GraphType }) {
   const router = useRouter();
   
-  const createGraph = (graphTypeId: number) => {
-    router.push(`/create_graph/${graphTypeId}`);
+  const openGraph = (graphTypeId: number) => {
+    router.push(`/graph/${graphTypeId}`);
   };
   
   return (
     <Card
-      onClick={() => createGraph(graphType.id)}
+      onClick={() => openGraph(graphType.id)}
       sx={{
         cursor: "pointer",
         transition: "transform 0.3s, box-shadow 0.3s",
