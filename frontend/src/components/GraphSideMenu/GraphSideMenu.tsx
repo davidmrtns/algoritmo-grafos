@@ -3,7 +3,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CloseIcon from '@mui/icons-material/Close';
 import { GRAPH_SIDE_MENU_WIDTH } from "../../constants/componentsConstants";
-import { ArtistNode } from "../../src/types/types";
+import { ArtistNode } from "../../types/types";
 
 export default function GraphSideMenu({ node, onCloseMenu } : { node?: ArtistNode, onCloseMenu: () => void }) {
   const PROFILE_IMAGE_WIDTH = 136;

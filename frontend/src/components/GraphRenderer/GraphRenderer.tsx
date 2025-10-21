@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import * as THREE from "three";
-import { ArtistNode, GraphData, GraphNode } from "../../src/types/types";
+import { ArtistNode, GraphData, GraphNode } from "../../types/types";
 import { Box, SpeedDial } from "@mui/material";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useState } from "react";

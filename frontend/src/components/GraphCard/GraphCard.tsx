@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { GraphType } from "../../src/types/types";
+import { GraphType } from "../../types/types";
 
 export default function GraphCard({ graphType }: { graphType: GraphType }) {
   const router = useRouter();

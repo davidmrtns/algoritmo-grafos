@@ -1,4 +1,4 @@
-import { ArtistNode } from "../../src/types/types";
+import { ArtistNode } from "../../types/types";
 
 export const TAYLOR_SWIFT_NODE: ArtistNode = {
   id: "Taylor Swift ID",
