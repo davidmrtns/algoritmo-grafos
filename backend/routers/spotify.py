@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from db.connection import get_session
-from services.services import add_graph_to_db
+from services.services import add_graph_to_db, parse_graph_from_db
 from utils.spotify_client import get_current_user_id_and_name, get_user_top_artists
 
 
@@ -29,4 +29,14 @@ async def common_artists(
         if graph:
             return graph.id
 
+    return None
+
+@router.get("/get-graph/{graph_id}")
+async def get_graph(
+        graph_id: str,
+        db: Session = Depends(get_session)
+):
+    graph = parse_graph_from_db(graph_id, db)
+    if graph:
+        return graph
     return None

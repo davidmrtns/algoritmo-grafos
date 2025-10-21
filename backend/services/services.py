@@ -51,3 +51,56 @@ def add_graph_to_db(user_id: str, user_name: str, artists: list[dict], db: Sessi
     except Exception as e:
         db.rollback()
         return None # TODO: handle error properly
+
+
+def parse_graph_from_db(graph_id: str, db: Session) -> Graph | None:
+    graph_parse_obj = {
+        "nodes": [],
+        "links": []
+    }
+    
+    graph = db.query(Graph).filter_by(id=graph_id).first()
+    
+    user_1 = db.query(User).filter_by(id=graph.user_1_id).first()
+    user_2 = db.query(User).filter_by(id=graph.user_2_id).first()
+
+    user_1_artists = db.query(UserArtistAssociation).filter_by(user_id=user_1.id).all()
+    
+    if user_2:
+        user_2_artists = db.query(UserArtistAssociation).filter_by(user_id=user_2.id).all()
+
+    graph_parse_obj["nodes"] = [
+        _parse_user_node(user_1)
+    ] + (
+        [_parse_user_node(user_2)] if user_2 else []
+    ) + [
+        _fetch_artist_details(assoc.artist_id, db) for assoc in user_1_artists
+    ]
+
+    graph_parse_obj["links"] = [
+        {
+            "source": assoc.user_id,
+            "target": assoc.artist_id
+        } for assoc in user_1_artists + (user_2_artists if user_2 else [])
+    ]
+
+    return graph_parse_obj
+
+
+def _parse_user_node(user: User) -> dict:
+    return {
+        "id": user.id,
+        "name": user.name,
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/1946/1946429.png",
+        "isUser": True
+    }
+
+
+def _fetch_artist_details(artist_id: str, db: Session) -> dict:
+    artist = db.query(Artist).filter_by(id=artist_id).first()
+    return {
+        "id": artist.id,
+        "name": artist.name,
+        "imageUrl": artist.image_url,
+        "isUser": False
+    }
