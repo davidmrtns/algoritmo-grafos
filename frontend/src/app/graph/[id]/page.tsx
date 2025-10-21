@@ -3,6 +3,7 @@
 import GraphRenderer from "@/components/GraphRenderer/GraphRenderer";
 import { ProtectedPageWrapper } from "@/components/ProtectedPageWrapper/ProtectedPageWrapper";
 import { fetchWrapper } from "@/utils/fetchWrapper";
+import resolveMockData from "@/utils/mockResolver";
 import { CircularProgress, Typography } from "@mui/material";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,14 +14,17 @@ export default function Home() {
 
   const params = useParams();
   const graphId = params.id;
+  const isDev = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     const fetchGraphData = async () => {
       setLoading(true);
 
       try {
-        const response = await fetchWrapper<any>(`get-graph/${graphId}`);
-        setGraphData(response);
+        const graphData =  isDev
+          ? resolveMockData(Number(graphId))
+          : await fetchWrapper<any>(`get-graph/${graphId}`);
+        setGraphData(graphData);
       } catch (error) {
         console.error("Error fetching graph data:", error);
       } finally {
