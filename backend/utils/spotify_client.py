@@ -1,4 +1,5 @@
 import os
+from typing import Optional, Tuple
 from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -16,7 +17,18 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=SPOTIFY_REDIRECT_URI, scope=scope
 ))
 
-async def get_user_top_artists() -> list[str]:
+async def get_current_user_id_and_name() -> Tuple[Optional[str], Optional[str]]:
+    user_id = None
+    name = None
+
+    user_profile = sp.current_user()
+    if user_profile:
+        user_id = user_profile.get('id')
+        name = user_profile.get('display_name')
+
+    return user_id, name
+
+async def get_user_top_artists() -> list[dict]:
     artists = []
     results = sp.current_user_top_artists(limit=10, time_range='medium_term')
     for artist in results['items']:

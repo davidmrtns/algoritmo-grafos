@@ -46,3 +46,7 @@ next-env.d.ts
 venv/
 __pycache__/
 .cache
+
+# alembic
+alembic/
+alembic.ini
