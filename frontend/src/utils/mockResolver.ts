@@ -1,3 +1,4 @@
+import { GRAPH_TYPES } from "@/constants/graphTypes";
 import {
   COMMON_ARTISTS_MOCK,
   DISTANCE_BETWEEN_ARTISTS_MOCK,
@@ -10,19 +11,19 @@ export default function resolveMockData(graphTypeId: number) {
   let mockData;
   
   switch (graphTypeId) {
-    case 0:
+    case GRAPH_TYPES.CommonArtists.id:
       mockData = COMMON_ARTISTS_MOCK;
       break;
-    case 1:
+    case GRAPH_TYPES.DistanceBetweenArtists.id:
       mockData = DISTANCE_BETWEEN_ARTISTS_MOCK;
       break;
-    case 2:
+    case GRAPH_TYPES.Recommendations.id:
       mockData = RECOMMENDED_ARTISTS_MOCK;
       break;
-    case 3:
+    case GRAPH_TYPES.MusicClustering.id:
       mockData = MY_CLUSTERS_MOCK;
       break;
-    case 4:
+    case GRAPH_TYPES.DiscoveryTree.id:
       mockData = MY_DISCOVERY_TREE_MOCK;
       break;
     default:

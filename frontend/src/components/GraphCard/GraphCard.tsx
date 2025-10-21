@@ -32,10 +32,10 @@ export default function GraphCard({ graphType }: { graphType: GraphType }) {
             fontStyle: "italic"
           }}
         >
-          {graphType.sharedGraph ? "Compartilhado" : "Individual"}
+          {graphType.isSharedGraph ? "Compartilhado" : "Individual"}
         </Typography>
         <Typography textAlign="center">
-          {graphType.name}
+          {graphType.displayName}
         </Typography>
       </CardContent>
     </Card>

@@ -3,7 +3,7 @@
 import { Box, FilledInput, IconButton, InputAdornment, Typography } from "@mui/material";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useParams } from "next/navigation";
-import GRAPH_TYPES from "../../../constants/graphTypes";
+import { GRAPH_TYPES } from "../../../constants/graphTypes";
 import { useEffect, useState } from "react";
 import { ProtectedPageWrapper } from "../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 
@@ -14,7 +14,7 @@ export default function Home() {
   const params = useParams();
   const graphId = params.id;
 
-  const graph = GRAPH_TYPES.find((g) => g.id === Number(graphId));
+  const graph = Object.values(GRAPH_TYPES).find((g) => g.id === Number(graphId));
 
   /*
     Aqui, deve ser feita uma requisição ao backend para coletar os dados do usuário na API do Spotify,
@@ -63,7 +63,7 @@ export default function Home() {
         flexDirection="column"
       >
         <Typography variant="h4" textAlign="center" gutterBottom>
-          {!graph ? "Não encontrado" : graph.name}
+          {!graph ? "Não encontrado" : graph.displayName}
         </Typography>
         {sharedLink &&
           <Box>

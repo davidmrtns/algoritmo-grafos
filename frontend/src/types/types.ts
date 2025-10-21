@@ -22,9 +22,9 @@ export type GraphLink = {
 
 export type GraphType = {
   id: number;
-  name: string;
-  sharedGraph: boolean;
-  apiUrl: string;
+  displayName: string;
+  isSharedGraph: boolean;
+  apiEndpoint: string;
 };
 
 export enum LinkType {

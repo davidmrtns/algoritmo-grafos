@@ -1,12 +1,40 @@
 import { GraphType } from "../types/types";
 
-const GRAPH_TYPES: GraphType[] = [
-  { id: 0, name: "Artistas em comum", sharedGraph: true, apiUrl: "" },
-  { id: 1, name: "Distância entre artistas", sharedGraph: true, apiUrl: "" },
-  { id: 2, name: "Recomendações", sharedGraph: false, apiUrl: "" },
-  { id: 3, name: "Clusterização musical", sharedGraph: false, apiUrl: "" },
-  { id: 4, name: "Árvore de descoberta musical", sharedGraph: false, apiUrl: "" },
-  { id: 5, name: "Conexões sociais", sharedGraph: true, apiUrl: "" }
-];
-
-export default GRAPH_TYPES;
+export const GRAPH_TYPES: { [key: string]: GraphType } = {
+  CommonArtists: {
+    id: 0,
+    displayName: "Artistas em comum",
+    isSharedGraph: true,
+    apiEndpoint: "/common-artists"
+  },
+  DistanceBetweenArtists: {
+    id: 1,
+    displayName: "Distância entre artistas",
+    isSharedGraph: true,
+    apiEndpoint: "/distance-between-artists"
+  },
+  Recommendations: {
+    id: 2,
+    displayName: "Recomendações",
+    isSharedGraph: false,
+    apiEndpoint: "/recommendations"
+  },
+  MusicClustering: {
+    id: 3,
+    displayName: "Clusterização musical",
+    isSharedGraph: false,
+    apiEndpoint: "/music-clustering"
+  },
+  DiscoveryTree: {
+    id: 4,
+    displayName: "Árvore de descoberta musical",
+    isSharedGraph: false,
+    apiEndpoint: "/discovery-tree"
+  },
+  SocialConnections: {
+    id: 5,
+    displayName: "Conexões sociais",
+    isSharedGraph: true,
+    apiEndpoint: "/social-connections"
+  }
+};
