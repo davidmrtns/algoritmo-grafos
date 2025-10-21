@@ -30,7 +30,7 @@ export default function GraphSideMenu({ node, onCloseMenu } : { node?: ArtistNod
           padding: 2
         }}
       >
-        <Typography variant="h4">{node?.id}</Typography>
+        <Typography variant="h4">{node?.name}</Typography>
         <Avatar
           alt={node?.id}
           src={node?.imageUrl}
