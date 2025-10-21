@@ -36,7 +36,7 @@ export default function Home() {
             ))}
           </Box>
         </>
-        <Divider sx={{ width: '100%', my: 4 }} />
+        <Divider sx={{ width: '40%', my: 4, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
         <>
           <Typography variant="subtitle1" component="h1" marginBottom={1}>
             Seus grafos
