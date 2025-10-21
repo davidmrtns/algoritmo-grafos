@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import spotify
+from routers import graph
 
 
 app = FastAPI()
@@ -13,8 +13,8 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-app.include_router(spotify.router, prefix="/spotify", tags=["Spotify"])
+app.include_router(graph.router, prefix="/graph", tags=["Graph"])
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"message": "Hello World"}

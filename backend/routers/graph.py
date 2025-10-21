@@ -8,10 +8,6 @@ from utils.spotify_client import get_current_user_id_and_name, get_user_top_arti
 
 router = APIRouter()
 
-@router.get("/status")
-def spotify_status():
-    return {"status": "Spotify router is working"}
-
 @router.get("/user_info")
 async def get_user_info():
     user_id, name = await get_current_user_id_and_name()
@@ -31,7 +27,7 @@ async def common_artists(
 
     return None
 
-@router.get("/get-graph/{graph_id}")
+@router.get("/get/{graph_id}")
 async def get_graph(
         graph_id: str,
         db: Session = Depends(get_session)
