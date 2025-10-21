@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getDecodedToken } from "../utils/token_utils";
+import { getDecodedToken } from "../utils/tokenUtils";
 
 export default function Home() {
   const router = useRouter();
