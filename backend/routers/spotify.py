@@ -17,8 +17,8 @@ async def get_user_info():
     user_id, name = await get_current_user_id_and_name()
     return {"user_id": user_id, "name": name}
 
-@router.get("/top-artists")
-async def user_top_artists(
+@router.get("/common-artists")
+async def common_artists(
         db: Session = Depends(get_session)
 ):
     user_id, name = await get_current_user_id_and_name()
