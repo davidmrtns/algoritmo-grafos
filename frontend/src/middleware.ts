@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const PROTECTED_ROUTES = ["/dashboard"];
-const LOGIN_ROUTE = "/login";
+export const LOGIN_ROUTE = "/login";
 const ROOT = "/";
 
 export async function middleware(request: NextRequest) {

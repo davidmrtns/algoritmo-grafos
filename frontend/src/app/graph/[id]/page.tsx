@@ -2,6 +2,7 @@
 
 import GraphRenderer from "@/components/GraphRenderer/GraphRenderer";
 import { ProtectedPageWrapper } from "@/components/ProtectedPageWrapper/ProtectedPageWrapper";
+import { fetchWrapper } from "@/utils/fetchWrapper";
 import { CircularProgress, Typography } from "@mui/material";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,15 +14,13 @@ export default function Home() {
   const params = useParams();
   const graphId = params.id;
 
-  // TODO: create fetch wrapper
   useEffect(() => {
     const fetchGraphData = async () => {
       setLoading(true);
+
       try {
-        const response = await fetch(`http://localhost:8000/spotify/get-graph/${graphId}`);
-        if (!response.ok) throw new Error("Network response was not ok");
-        const data = await response.json();
-        setGraphData(data);
+        const response = await fetchWrapper<any>(`get-graph/${graphId}`);
+        setGraphData(response);
       } catch (error) {
         console.error("Error fetching graph data:", error);
       } finally {
