@@ -2,16 +2,26 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { GraphType } from "../../types/types";
 
-export default function GraphCard({ graphType }: { graphType: GraphType }) {
+interface GraphCardProps {
+  graphCardType: 'newGraph' | 'existingGraph';
+  graphId?: number;
+  graphType: GraphType;
+};
+
+export default function GraphCard({ graphCardType, graphId, graphType }: GraphCardProps) {
   const router = useRouter();
   
-  const openGraph = (graphTypeId: number) => {
-    router.push(`/graph/${graphTypeId}`);
+  const openGraph = () => {
+    if (graphCardType === 'existingGraph' && graphId !== undefined) {
+      router.push(`/graph/${graphId}`);
+    } else {
+      router.push(`/create_graph/${graphType.id}`);
+    }
   };
   
   return (
     <Card
-      onClick={() => openGraph(graphType.id)}
+      onClick={openGraph}
       sx={{
         cursor: "pointer",
         transition: "transform 0.3s, box-shadow 0.3s",

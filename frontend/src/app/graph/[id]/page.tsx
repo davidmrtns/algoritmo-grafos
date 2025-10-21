@@ -39,6 +39,9 @@ export default function Home() {
 
   return (
     <ProtectedPageWrapper>
+      <Typography variant="h4" textAlign="center" gutterBottom>
+        {!graphData ? "Não encontrado" : "Seu grafo"} {/*TODO: display graph type or name*/}
+      </Typography>
       {
         loading ?
           <CircularProgress color="secondary" /> :
