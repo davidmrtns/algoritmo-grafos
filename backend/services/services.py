@@ -102,5 +102,6 @@ def _fetch_artist_details(artist_id: str, db: Session) -> dict:
         "id": artist.id,
         "name": artist.name,
         "imageUrl": artist.image_url,
+        "profileUrl": artist.profile_url,
         "isUser": False
     }
