@@ -23,7 +23,7 @@ export default function Home() {
       try {
         const graphData =  isDev
           ? resolveMockData(Number(graphId))
-          : await fetchWrapper<any>(`get-graph/${graphId}`);
+          : await fetchWrapper<any>(`get/${graphId}`);
         setGraphData(graphData);
       } catch (error) {
         console.error("Error fetching graph data:", error);
