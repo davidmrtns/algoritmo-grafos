@@ -43,7 +43,7 @@ async def get_user_top_artists() -> list[dict]:
             "id": artist['id'],
             "name": artist['name'],
             "imageUrl": artist['images'][1]['url'] if artist['images'] else None,
-            "profileUrl": artist['href'],
+            "profileUrl": artist['external_urls']['spotify'],
             "isUser": False
         }
         artists.append(artist_obj)
