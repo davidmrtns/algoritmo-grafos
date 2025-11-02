@@ -18,7 +18,18 @@ def get_artist_from_db(artist_id: str, db: Session) -> Artist | None:
     return artist
 
 
-def add_graph_to_db(user_id: str, user_name: str, artists: list[dict], db: Session) -> Graph | None:
+def get_user_artist_assoc_from_db(user_id: str, artist_id: str, db: Session) -> UserArtistAssociation | None:
+    user_artist_assoc = db.query(UserArtistAssociation).filter_by(user_id=user_id, artist_id=artist_id).first()
+    return user_artist_assoc
+
+
+def add_graph_to_db(
+        user_id: str,
+        user_name: str,
+        artists: list[dict],
+        graph_id: str | None,
+        db: Session
+) -> Graph | None:
     try:
         user = db.query(User).filter_by(id=user_id).first()
         if not user:
@@ -34,13 +45,24 @@ def add_graph_to_db(user_id: str, user_name: str, artists: list[dict], db: Sessi
                     profile_url=artist.get("profileUrl")
                 )
 
-            artist_user_assoc = UserArtistAssociation(
-                user_id=user.id,
-                artist_id=artist_obj.id
-            )
+            user_artist_assoc = get_user_artist_assoc_from_db(user.id, artist_obj.id, db)
+            if not user_artist_assoc:
+                user_artist_assoc = UserArtistAssociation(
+                    user_id=user.id,
+                    artist_id=artist_obj.id
+                )
 
             db.add(artist_obj)
-            db.add(artist_user_assoc)
+            db.add(user_artist_assoc)
+
+        if graph_id:
+            graph = db.query(Graph).filter_by(id=graph_id).first()
+            if graph and graph.user_1_id != user.id and not graph.user_2_id:
+                graph.user_2_id = user.id
+                db.commit()
+                return graph
+            # TODO: add else to return none if graph is complete or user is already in graph
+
         graph = Graph(
             user_1_id=user.id
         )
@@ -65,16 +87,18 @@ def parse_graph_from_db(graph_id: str, db: Session) -> Graph | None:
     user_2 = db.query(User).filter_by(id=graph.user_2_id).first()
 
     user_1_artists = db.query(UserArtistAssociation).filter_by(user_id=user_1.id).all()
-    
     if user_2:
         user_2_artists = db.query(UserArtistAssociation).filter_by(user_id=user_2.id).all()
+
+    all_associations = user_1_artists + (user_2_artists if user_2 else [])
+    unique_associations = {assoc.artist_id: assoc for assoc in all_associations}.values()
 
     graph_parse_obj["nodes"] = [
         _parse_user_node(user_1)
     ] + (
         [_parse_user_node(user_2)] if user_2 else []
     ) + [
-        _fetch_artist_details(assoc.artist_id, db) for assoc in user_1_artists
+        _fetch_artist_details(assoc.artist_id, db) for assoc in unique_associations
     ]
 
     graph_parse_obj["links"] = [

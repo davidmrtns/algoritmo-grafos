@@ -22,13 +22,14 @@ async def get_user_info():
 
 @router.get("/common-artists")
 async def common_artists(
+        graph_id: str | None = None,
         db: Session = Depends(get_session)
 ):
     user_id, name = await get_current_user_id_and_name()
 
     artists = await get_user_top_artists()
     if len(artists) > 0:
-        graph = add_graph_to_db(user_id, name, artists, db)
+        graph = add_graph_to_db(user_id, name, artists, graph_id, db)
         if graph:
             return graph.id
 
