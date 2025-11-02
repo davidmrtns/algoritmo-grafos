@@ -13,9 +13,16 @@ SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 
 scope = ["user-library-read", "user-top-read"]
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+sp_oauth_manager = SpotifyOAuth(
     client_id=CLIENT_ID, client_secret=CLIENT_SECRET, redirect_uri=SPOTIFY_REDIRECT_URI, scope=scope
-))
+)
+sp = spotipy.Spotify(auth_manager=sp_oauth_manager)
+
+async def get_access_token():
+    token_info = sp_oauth_manager.get_access_token()
+    if not token_info:
+        return None
+    return token_info
 
 async def get_current_user_id_and_name() -> Tuple[Optional[str], Optional[str]]:
     user_id = None

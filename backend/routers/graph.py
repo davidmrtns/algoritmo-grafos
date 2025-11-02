@@ -3,10 +3,17 @@ from sqlalchemy.orm import Session
 from fastapi import Depends
 from db.connection import get_session
 from services.services import add_graph_to_db, parse_graph_from_db
-from utils.spotify_client import get_current_user_id_and_name, get_user_top_artists
+from utils.spotify_client import get_access_token, get_current_user_id_and_name, get_user_top_artists
 
 
 router = APIRouter()
+
+@router.get("/access_token")
+async def access_token():
+    token_info = await get_access_token()
+    if token_info:
+        return token_info
+    return {"error": "Could not retrieve access token"}
 
 @router.get("/user_info")
 async def get_user_info():
