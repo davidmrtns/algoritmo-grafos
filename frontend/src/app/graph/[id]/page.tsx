@@ -2,6 +2,7 @@
 
 import GraphRenderer from "@/components/GraphRenderer/GraphRenderer";
 import { ProtectedPageWrapper } from "@/components/ProtectedPageWrapper/ProtectedPageWrapper";
+import { GraphData } from "@/types/types";
 import { fetchWrapper } from "@/utils/fetchWrapper";
 import resolveMockData from "@/utils/mockResolver";
 import { CircularProgress, Typography } from "@mui/material";
@@ -9,7 +10,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [graphData, setGraphData] = useState(undefined);
+  const [graphData, setGraphData] = useState<GraphData | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
   const params = useParams();
@@ -23,7 +24,7 @@ export default function Home() {
       try {
         const graphData = isDev
           ? resolveMockData(Number(graphId))
-          : await fetchWrapper<any>(`get/${graphId}`);
+          : await fetchWrapper<GraphData>(`get/${graphId}`);
         setGraphData(graphData);
       } catch (error) {
         console.error("Error fetching graph data:", error);
@@ -35,7 +36,7 @@ export default function Home() {
     if (graphId) {
       fetchGraphData();
     }
-  }, [graphId]);
+  }, [graphId, isDev]);
 
   return (
     <ProtectedPageWrapper>

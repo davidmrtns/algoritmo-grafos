@@ -4,7 +4,7 @@ import { Box, CircularProgress, FilledInput, IconButton, InputAdornment, Typogra
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useParams, useRouter } from "next/navigation";
 import { GRAPH_TYPES } from "../../../constants/graphTypes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ProtectedPageWrapper } from "../../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
 
   const graphType = Object.values(GRAPH_TYPES).find((g) => g.id === Number(graphTypeId));
 
-  const invokeCreateGraph = async () => {
+  const invokeCreateGraph = useCallback(async () => {
     setLoading(true);
     
     if (!graphType) {
@@ -40,11 +40,11 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [graphType]);
 
   useEffect(() => {
     invokeCreateGraph();
-  }, []);
+  }, [invokeCreateGraph]);
 
   const generateContent = () => {
     if (loading) {

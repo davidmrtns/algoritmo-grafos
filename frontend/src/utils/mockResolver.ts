@@ -27,7 +27,7 @@ export default function resolveMockData(graphTypeId: number) {
       mockData = MY_DISCOVERY_TREE_MOCK;
       break;
     default:
-      mockData = null;
+      mockData = undefined;
       break;
   }
 

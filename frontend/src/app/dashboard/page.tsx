@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { GRAPH_TYPES } from "../../constants/graphTypes";
 import { ProtectedPageWrapper } from "../../components/ProtectedPageWrapper/ProtectedPageWrapper";
 import GraphCard from "../../components/GraphCard/GraphCard";
