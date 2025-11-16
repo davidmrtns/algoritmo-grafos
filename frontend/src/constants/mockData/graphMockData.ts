@@ -1,6 +1,6 @@
 import { GraphData, LinkType } from "../../types/types";
 import { BEYONCE_NODE, BILLIE_EILISH_NODE, COLDPLAY_NODE, CONAN_GRAY_NODE, DJ_KHALED_NODE, DOJA_CAT_NODE, DRAKE_NODE, DUA_LIPA_NODE, ED_SHEERAN_NODE, GRACIE_ABRAMS_NODE, IMAGINE_DRAGONS_NODE, JUSTIN_BIEBER_NODE, KENDRICK_LAMAR_NODE, LAUV_NODE, OLIVIA_RODRIGO_NODE, PARAMORE_NODE, POST_MALONE_NODE, SABRINA_CARPENTER_NODE, SZA_NODE, TAYLOR_SWIFT_NODE, THE_WEEKND_NODE, TRAVIS_SCOTT_NODE } from "./artistsMockData";
-import { DAVID_NODE, LUCAS_NODE } from "./usersMockData";
+import { DAVID_NODE, STEPHANY_NODE } from "./usersMockData";
 
 export const MY_ARTISTS_MOCK: GraphData = {
   nodes: [
@@ -18,7 +18,7 @@ export const COMMON_ARTISTS_MOCK: GraphData = {
   nodes: [
     // Users
     DAVID_NODE,
-    LUCAS_NODE,
+    STEPHANY_NODE,
 
     // Artists
     TAYLOR_SWIFT_NODE,
@@ -37,10 +37,10 @@ export const COMMON_ARTISTS_MOCK: GraphData = {
     { source: DAVID_NODE.id, target: BILLIE_EILISH_NODE.id },
 
     // Lucas → artists
-    { source: LUCAS_NODE.id, target: TAYLOR_SWIFT_NODE.id },
-    { source: LUCAS_NODE.id, target: SABRINA_CARPENTER_NODE.id },
-    { source: LUCAS_NODE.id, target: THE_WEEKND_NODE.id },
-    { source: LUCAS_NODE.id, target: DUA_LIPA_NODE.id }
+    { source: STEPHANY_NODE.id, target: TAYLOR_SWIFT_NODE.id },
+    { source: STEPHANY_NODE.id, target: SABRINA_CARPENTER_NODE.id },
+    { source: STEPHANY_NODE.id, target: THE_WEEKND_NODE.id },
+    { source: STEPHANY_NODE.id, target: DUA_LIPA_NODE.id }
   ],
 };
 

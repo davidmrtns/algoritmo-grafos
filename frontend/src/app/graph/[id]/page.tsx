@@ -21,7 +21,7 @@ export default function Home() {
       setLoading(true);
 
       try {
-        const graphData =  isDev
+        const graphData = isDev
           ? resolveMockData(Number(graphId))
           : await fetchWrapper<any>(`get/${graphId}`);
         setGraphData(graphData);

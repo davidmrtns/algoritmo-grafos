@@ -16,7 +16,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/navigation';
 import { removeTokenFromCookies } from '../../utils/tokenUtils';
 
-const APP_NAME = "app name"
+const APP_NAME = "SoundMesh"
 const pages: string[] = []; // Currently not used
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 

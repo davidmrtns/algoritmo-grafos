@@ -7,9 +7,9 @@ export const DAVID_NODE: GraphNode = {
   isUser: true
 }
 
-export const LUCAS_NODE: GraphNode = {
-  id: "Lucas",
-  name: "Lucas",
+export const STEPHANY_NODE: GraphNode = {
+  id: "Stephany",
+  name: "Stephany",
   imageUrl: "https://cdn-icons-png.flaticon.com/512/1946/1946429.png",
   isUser: true
 }
