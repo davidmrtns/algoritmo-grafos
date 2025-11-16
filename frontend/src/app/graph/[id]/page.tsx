@@ -15,14 +15,14 @@ export default function Home() {
 
   const params = useParams();
   const graphId = params.id;
-  const isDev = process.env.NODE_ENV === "development";
+  const useMockData = process.env.NEXT_PUBLIC_USE_DATA_FROM === "mock";
 
   useEffect(() => {
     const fetchGraphData = async () => {
       setLoading(true);
 
       try {
-        const graphData = isDev
+        const graphData = useMockData
           ? resolveMockData(Number(graphId))
           : await fetchWrapper<GraphData>(`get/${graphId}`);
         setGraphData(graphData);
@@ -36,7 +36,7 @@ export default function Home() {
     if (graphId) {
       fetchGraphData();
     }
-  }, [graphId, isDev]);
+  }, [graphId, useMockData]);
 
   return (
     <ProtectedPageWrapper>
